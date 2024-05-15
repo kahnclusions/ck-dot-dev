@@ -14,11 +14,11 @@ pub fn Layout() -> impl IntoView {
                         <a href="/">"ck·dev"</a>
                     </h1>
                     <nav class=" font-dos text-2xl flex flex-row gap-3">
-                        <p>
-                            <MenuItem label="writing".into() href="/writings".into()>
-                                <TextIcon />
-                            </MenuItem>
-                        </p>
+                        // <p>
+                        //     <MenuItem label="writing".into() href="/writings".into()>
+                        //         <TextIcon />
+                        //     </MenuItem>
+                        // </p>
                         <p>
                             <MenuItem label="portfolio".into() href="/portfolio".into()>
                                 <CopyDocument  />
