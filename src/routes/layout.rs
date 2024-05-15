@@ -1,7 +1,7 @@
 use leptos::*;
 use leptos_router::Outlet;
 
-use crate::ui::icons::{AddPerson, CopyDocument};
+use crate::ui::icons::{AddPerson, CopyDocument, TextIcon};
 use crate::ui::MenuItem;
 
 #[component]
@@ -13,18 +13,23 @@ pub fn Layout() -> impl IntoView {
                     <h1 class="text-4xl text-gold font-display">
                         <a href="/">"ck·dev"</a>
                     </h1>
-                        <nav class=" font-dos text-2xl flex flex-row gap-3">
-                    <p>
-                        <MenuItem label="portfolio".into() href="/portfolio".into()>
-                            <CopyDocument  />
-                        </MenuItem>
-                    </p>
-                    <p>
-                        <MenuItem label="contact".into() href="/contact".into()>
-                            <AddPerson />
-                        </MenuItem>
-                    </p>
-                </nav>
+                    <nav class=" font-dos text-2xl flex flex-row gap-3">
+                        <p>
+                            <MenuItem label="writing".into() href="/writings".into()>
+                                <TextIcon />
+                            </MenuItem>
+                        </p>
+                        <p>
+                            <MenuItem label="portfolio".into() href="/portfolio".into()>
+                                <CopyDocument  />
+                            </MenuItem>
+                        </p>
+                        <p>
+                            <MenuItem label="contact".into() href="/contact".into()>
+                                <AddPerson />
+                            </MenuItem>
+                        </p>
+                    </nav>
                 </header>
                 <Outlet />
                 <footer class="font-display p-3 text-center mt-3">"© 2024 ck - made in Canada + Taiwan"</footer>
