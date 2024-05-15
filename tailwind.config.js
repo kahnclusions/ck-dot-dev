@@ -5,9 +5,10 @@ module.exports = {
   theme: {
     fontFamily: {
       mono: ["AnonymousPro"],
+      serif: ["Volume Tc"],
       display: ["Silkscreen"],
       dos: ["PerfectDOS"],
-      ospx: ["OpenSansPX"]
+      ospx: ["OpenSansPX"],
     },
     extend: {
       colors: {
@@ -26,7 +27,7 @@ module.exports = {
         "hl-low": "hsl(var(--color-hl-low) / <alpha-value>)",
         "hl-med": "hsl(var(--color-hl-med) / <alpha-value>)",
         "hl-high": "hsl(var(--color-hl-high) / <alpha-value>)",
-      }
+      },
     },
   },
   plugins: [],

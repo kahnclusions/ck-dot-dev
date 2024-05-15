@@ -18,6 +18,7 @@ pub fn App() -> impl IntoView {
 
         <Body class="bg-base text-text" />
 
+
         // content for this welcome page
         <Router fallback=|| {
             let mut outside_errors = Errors::default();
@@ -32,8 +33,8 @@ pub fn App() -> impl IntoView {
                     <Route path="" view=crate::routes::home::HomePage />
                     <Route path="/portfolio" view=crate::routes::portfolio::PortfolioPage />
                     <Route path="/contact" view=crate::routes::contact::ContactPage />
-                    <Route path="/writings" view=crate::routes::writings::WritingsPage />
-                    <Route path="/writing/:id" view=crate::routes::writing::WritingPage />
+                    <Route path="/articles" view=crate::routes::articles::ArticlesPage />
+                    <Route path="/article/:slug" view=crate::routes::article::ArticlePage />
                 </Route>
             </Routes>
         </Router>

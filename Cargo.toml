@@ -25,6 +25,8 @@ http = "1"
 serde = { version = "1.0.199", features = ["derive"] }
 leptos-use = { version = "0.10.9" }
 web-sys = "0.3.69"
+markdown = "1.0.0-alpha.17"
+gray_matter = "0.2.6"
 
 [features]
 hydrate = ["leptos/hydrate", "leptos_meta/hydrate", "leptos_router/hydrate"]
