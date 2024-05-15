@@ -1,0 +1,235 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  height: 100%;
+}
+
+* { -webkit-font-smoothing: antialiased; }
+
+@layer base {
+  :root {
+    --color-base: 32 57% 95%;
+    --color-surface: 35 100% 98%;
+    --color-overlay: 33 43% 91%;
+    --color-muted: 257 9% 61%;
+    --color-subtle: 248 12% 52%;
+    --color-text: 248 19% 40%;
+    --color-love: 343 35% 55%;
+    --color-gold: 35 81% 56%;
+    --color-rose: 3 53% 67%;
+    --color-pine: 197 53% 67%;
+    --color-foam: 189 30% 48%;
+    --color-iris: 268 21% 57%;
+    --color-hl-low: 25 35% 93%;
+    --color-hl-med: 10 9% 86%;
+    --color-hl-high: 315 4% 80%;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-base: 249 22% 12%;
+      --color-surface: 247 23% 15%;
+      --color-overlay: 248 25% 18%;
+      --color-muted: 249 12% 47%;
+      --color-subtle: 248 15% 61%;
+      --color-text: 245 50% 91%;
+      --color-love: 343 76% 68%;
+      --color-gold: 35 88% 72%;
+      --color-rose: 2 55% 83%;
+      --color-pine: 197 49% 38%;
+      --color-foam: 189 43% 73%;
+      --color-iris: 267 57% 78%;
+      --color-hl-low: 244 18% 15%;
+      --color-hl-med: 249 15% 28%;
+      --color-hl-high: 248 13% 36%;
+    }
+  }
+}
+
+@layer base {
+  @font-face {
+    font-family: "OpenSansCondensed";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/OpenSans_Condensed-Regular.ttf"), local("ttf");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "OpenSansCondensed";
+    font-style: light;
+    font-weight: 200;
+    src: url("/fonts/OpenSans_Condensed-Light.ttf"), local("ttf");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "GamjaFlower";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/GamjaFlower-Regular.ttf"), local("ttf");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "MeganJune";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/MeganJune.otf"), local("otf");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Finland";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/Finland.ttf"), local("ttf");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "PTSerif";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/PTSerif-Regular.ttf"), local("ttf");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Crayon";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/crayon.ttf"), local("ttf");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Noto Serif TC";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/Noto_Serif_TC/NotoSerifTC-Regular.otf"),
+      local("otf");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Noto Sans TC";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/Noto_Sans_TC/NotoSansTC-Regular.otf"), local("otf");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Silkscreen';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/Silkscreen/Silkscreen-Regular.ttf") format('truetype');
+  }
+  @font-face {
+    font-family: 'Playfair';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf") format('truetype');
+  }
+  @font-face {
+    font-family: 'NotoSansTC';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/Noto_Sans_TC/NotoSansTC-VariableFont_wght.ttf") format('truetype');
+  }
+  @font-face {
+    font-family: 'PressStart2P';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/PressStart2P-Regular.ttf") format('truetype');
+  }
+  @font-face {
+    font-family: 'Minecraft';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/Minecraft.ttf") format('truetype');
+  }
+  
+  @font-face {
+    font-family: 'RetroGaming';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/RetroGaming.ttf") format('truetype');
+  }
+  
+  @font-face {
+    font-family: 'PerfectDOS';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/PerfectDOS.ttf") format('truetype');
+  }
+  
+  @font-face {
+    font-family: 'Pixeled';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/Pixeled.ttf") format('truetype');
+  }
+  
+  @font-face {
+    font-family: 'Pixellari';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/Pixellari.ttf") format('truetype');
+  } 
+  @font-face {
+    font-family: 'PixelOperator';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/PixelOperator.ttf") format('truetype');
+  }
+  @font-face {
+    font-family: 'OpenSansPX';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/OpenSansPX.ttf") format('truetype');
+  }
+
+  @font-face {
+    font-family: 'AnonymousPro';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/Anonymous_Pro/AnonymousPro-Regular.ttf") format('truetype');
+  }
+  @font-face {
+    font-family: 'AnonymousPro';
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/Anonymous_Pro/AnonymousPro-Italic.ttf") format('truetype');
+  }
+  @font-face {
+    font-family: 'AnonymousPro';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url("/fonts/Anonymous_Pro/AnonymousPro-Bold.ttf") format('truetype');
+  }
+  @font-face {
+    font-family: 'AnonymousPro';
+    font-style: italic;
+    font-weight: 600;
+    font-display: swap;
+    src: url("/fonts/Anonymous_Pro/AnonymousPro-BoldItalic.ttf") format('truetype');
+  }
+}
