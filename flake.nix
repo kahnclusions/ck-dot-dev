@@ -71,14 +71,14 @@
         cargoArtifacts = craneLib.buildDepsOnly commonArgs;
 
         srcFilter = path: type:
-                (lib.hasSuffix "\.html" path) ||
-                (lib.hasSuffix "tailwind.config.js" path) ||
-                # Example of a folder for images, icons, etc
-                (lib.hasInfix "/public/" path) ||
-                (lib.hasInfix "/style/" path) ||
-                # Default filter from crane (allow .rs files)
-                (craneLib.filterCargoSources path type)
-              ;
+          (lib.hasSuffix "\.html" path) ||
+          (lib.hasSuffix "tailwind.config.js" path) ||
+          # Example of a folder for images, icons, etc
+          (lib.hasInfix "/public/" path) ||
+          (lib.hasInfix "/style/" path) ||
+          # Default filter from crane (allow .rs files)
+          (craneLib.filterCargoSources path type)
+        ;
 
         # Build the actual crate itself, reusing the dependency
         # artifacts from above.
@@ -176,6 +176,9 @@
             tailwindcss
             just
             cargo-watch
+            treefmt
+            nixpkgs-fmt
+            rustfmt
           ];
         };
       });
