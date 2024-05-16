@@ -33,7 +33,7 @@ hash-files = true
 
 So I added this and tried to deploy and run again, but, no dice. I did see a hash file now generated at `./target/release/hash.txt` but the link and script tags at runtime were still referencing the hashless filenames.
 
-The solution is that you need both the `hash-files = true` option at compile-time, the `hash.txt` to be in the same directory as the binary file (in case you copy or package it somewhere), AND the `LEPTOS_HASH_FILES=true` environment variable at runtime.
+The solution is that you need both the `hash-files = true` option at compile-time, the `hash.txt` to be in the same directory as the binary file (in case you copy or package it somewhere), _and_ the `LEPTOS_HASH_FILES=true` environment variable at runtime.
 
 With all of those requirements satisfied, you should get a head like this:
 

@@ -46,7 +46,7 @@ pub fn PersonIcon(#[prop(default = "".to_string())] class: String) -> impl IntoV
 pub fn TextIcon(#[prop(default = "".to_string())] class: String) -> impl IntoView {
     view! {
         <svg class={format!("inline w-4, h-4 {}", class)} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M3 3V7H5V5H11V19H9V21H15V19H13V5H19V7H21V3H3Z" fill="black"/>
+        <path d="M3 3V7H5V5H11V19H9V21H15V19H13V5H19V7H21V3H3Z" fill="currentColor"/>
         </svg>
     }
 }
