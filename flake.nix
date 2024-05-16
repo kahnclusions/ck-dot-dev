@@ -100,7 +100,7 @@
             cp -r target/site $out/bin/
             wrapProgram $out/bin/${name} \
               --set LEPTOS_SITE_ROOT $out/bin/site \
-              --set LEPTOS_HASH_FILES=true
+              --set LEPTOS_HASH_FILES true
           '';
         });
       in
