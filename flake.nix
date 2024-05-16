@@ -68,6 +68,7 @@
 
         srcFilter = path: type:
           (lib.hasSuffix "tailwind.config.js" path) ||
+          (lib.hasInfix "/content/" path) ||
           (lib.hasInfix "/public/" path) ||
           (lib.hasInfix "/style/" path) ||
           (craneLib.filterCargoSources path type)
@@ -94,6 +95,7 @@
             mkdir -p $out/bin
             cp target/release/${name} $out/bin/
             cp target/release/hash.txt $out/bin/
+            cp -r content $out/bin/content
             cp -r target/site $out/bin/
             wrapProgram $out/bin/${name} \
               --set LEPTOS_SITE_ROOT $out/bin/site \
