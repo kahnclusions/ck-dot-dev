@@ -38,11 +38,11 @@ function develop --wraps='nix develop'
 end
 ```
 
-### Step 3. Draw the rest of the fucking owl. Aka, add a `flake.nix` file.
+### Step 3. Draw the rest of the f*cking owl. Aka, add a `flake.nix` file.
 
 We're going to copy/paste the "quick start" example from [here](https://crane.dev/examples/quick-start.html) into `YOUR_PROJECT/flake.nix`. If you're impatient like me and try running `nix build` now you'll find that it sorta works (maybe it builds) but doesn't actually do what we need. Don't worry! This file is actually not far off from what we need.
 
-If you're not sure what a flake file is, it's basically a definition for how to make a Nix expression (or package) with verion-pinned dependencies that can be imported and used in other packages... it lists a bunch of inputs (dependencies), and then an output. Flakes are composable: you can use flakes as inputs to build other flakes.
+If you're not sure what a flake file is, it's basically a definition for how to make a Nix expression (or package) with version-pinned dependencies that can be imported and used in other packages... it lists a bunch of inputs (dependencies), and then an output. Flakes are composable: you can use flakes as inputs to build other flakes.
 
 In the flake file you'll see a line in the `outputs` block like this:
 
