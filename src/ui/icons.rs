@@ -2,7 +2,6 @@ use leptos::*;
 
 #[component]
 pub fn AddPerson(#[prop(default = "".to_string())] class: String) -> impl IntoView {
-    let class = format!("{}", class);
     view! {
         <svg class=class width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M6 12H7V13H13V12H14V11H15V5H14V4H13V3H7V4H6V5H5V11H6V12ZM7 7H8V6H9V5H11V6H12V7H13V9H12V10H11V11H9V10H8V9H7V7Z" fill="currentColor"/>
@@ -14,7 +13,6 @@ pub fn AddPerson(#[prop(default = "".to_string())] class: String) -> impl IntoVi
 
 #[component]
 pub fn CopyDocument(#[prop(default = "".to_string())] class: String) -> impl IntoView {
-    let class = format!("{}", class);
     view! {
         <svg class=class width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M15 15H9V17H15V15Z" fill="currentColor"/>
@@ -48,7 +46,6 @@ pub fn PersonIcon(#[prop(default = "".to_string())] class: String) -> impl IntoV
 
 #[component]
 pub fn TextIcon(#[prop(default = "".to_string())] class: String) -> impl IntoView {
-    let class = format!("{}", class);
     view! {
         <svg class=class width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M3 3V7H5V5H11V19H9V21H15V19H13V5H19V7H21V3H3Z" fill="black"/>

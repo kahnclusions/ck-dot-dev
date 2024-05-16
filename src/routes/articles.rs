@@ -1,4 +1,4 @@
-use crate::ui::{Link, Stack, Terminal};
+use crate::ui::{Stack, Terminal};
 use leptos::*;
 
 #[component]

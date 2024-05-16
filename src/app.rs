@@ -18,6 +18,7 @@ pub fn App() -> impl IntoView {
 
         <Body class="bg-base text-text" />
 
+        <Script src="/js/prism.js" />
 
         // content for this welcome page
         <Router fallback=|| {

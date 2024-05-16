@@ -49,7 +49,7 @@ pub fn PortfolioPage() -> impl IntoView {
                 location="Taipei, Taiwan".into()
                 image=Some("/images/wisepanda.jpg".into())
             >
-                <p>At Trait I lead the frontend development of their latest product, a language learning platform for connecting students with verified Mandarin Chinese tutors, <Link href="https://wisepanda.com".into() rel="noreferrer nofollow noopener".into() newtab=true>Wise Panda</Link>.</p>
+                <p>At Trait I lead the frontend development of their latest product, a language learning platform for connecting students with verified Mandarin Chinese tutors.</p>
                 <ul class="list-disc ml-5 space-y-1">
                     <li>Planning frontend architecture with Next.js 13/14 app directory</li>
                     <li>Making major contributions to the core frontend functionality using React and Next.js</li>

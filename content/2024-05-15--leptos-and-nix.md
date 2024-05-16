@@ -1,7 +1,8 @@
 ---
 title: Building Leptos apps with Nix, Fenix, and Crane
-date: 2023-09-30
+date: 2024-05-16
 description: Let's walk through how to use Nix to build Leptos fullstack apps with nightly Rust, taking care of the server program, client WASM, and assets.
+published: true
 ---
 
 When I decided to setup this website, I decided to try building it in Leptos as a bit of an experiment. One the one hand I could use off the shelf static site generators, because this site is going to be mostly static content after all, but on the other hand I wanted to try something interesting. The Leptos web framework promises to bring the benefits of Rust onto the web, but without the bloated file sizes typically associated with WASM-based applications or other MY_FAVOURITE_LANG to JS frameworks.
@@ -37,47 +38,119 @@ end
 
 ### Step 3. Draw the rest of the fucking owl. Aka, add a `flake.nix` file.
 
-Specifically, add the "Quick start" `flake.nix` from `crane`. You can find it [here](https://crane.dev/examples/quick-start.html). Just create the empty file and paste all of that in. If you're impatient like me and try running `nix build` now you'll find that it sorta works but doesn't. Don't worry! This file is actually pretty close to what you need.
+We're going to copy/paste the "quick start" example from [here](https://crane.dev/examples/quick-start.html) into `YOUR_PROJECT/flake.nix`. If you're impatient like me and try running `nix build` now you'll find that it sorta works (maybe it builds) but doesn't actually do what we need. Don't worry! This file is actually not far off from what we need.
 
-I want to take you through each part of the file and explain what it's for. This way it'll make more sense when we make modifications to it later. A flake file is like a definition for how to make a Nix module... it lists a bunch of inputs (dependencies), and then a bunch of outputs.
- 
+If you're not sure what a flake file is, it's basically a definition for how to make a Nix module... it lists a bunch of inputs (dependencies), and then an output. Flakes are composable: you can use flakes as inputs to build other flakes. 
+
+In the flake file you'll see a line in the `outputs` block like this:
+
 ```nix
-inputs = {
-  nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+craneLib = crane.lib.${system};
 
-  crane = {
-    url = "github:ipetkov/crane";
-    inputs.nixpkgs.follows = "nixpkgs";
-  };
+# ...
 
-  fenix = {
-    url = "github:nix-community/fenix";
-    inputs.nixpkgs.follows = "nixpkgs";
-    inputs.rust-analyzer-src.follows = "";
-  };
+craneLibLLvmTools = craneLib.overrideToolchain
+  (fenix.packages.${system}.complete.withComponents [
+```
 
-  flake-utils.url = "github:numtide/flake-utils";
+This lets us override the nixpkgs that crane is going to use to build stuff. I've set mine to this:
 
-  advisory-db = {
-    url = "github:rustsec/advisory-db";
-    flake = false;
-  };
+```nix
+rustToolchain = fenix.packages.${system}.fromToolchainFile {
+  file = ./rust-toolchain.toml;
+  sha256 = "paste the actual hash here";
+};
+
+craneLib = crane.lib.${system}.overrideToolchain rustToolchain;
+
+# ...
+
+craneLibLLvmTools = craneLib.overrideToolchain
+  (rustToolchain.withComponents [
+```
+
+You can usually just get the right hash value to use from the error message the first time you try to build. Next we need to add `cargo-leptos` so that we can run our Leptos commands like `cargo leptos watch` or `cargo leptos build --release`. Just below the craneLib there's a section of `buildInputs`. We're going to add a few packages here:
+
+```nix
+buildInputs = with pkgs; [
+  cargo-leptos
+  binaryen
+  tailwindcss
+```
+
+Next we need to update the `src` of our flake because our build needs to include more than just the Rust source files. For this we can create a "path filter" and then use it.
+
+```nix
+srcFilter = path: type:
+  (lib.hasSuffix "tailwind.config.js" path) ||
+  (lib.hasInfix "/public/" path) ||
+  (lib.hasInfix "/style/" path) ||
+  (craneLib.filterCargoSources path type)
+;
+```
+
+If there are any other file types or directories you need to include, you can put them here. For example to include `*.html` files you can add `(lib.hasSuffix "\.html" path) ||`.
+
+Next we need to use this filter to update our package source:
+
+```nix
+my-crate = craneLib.buildPackage (commonArgs // {
+inherit cargoArtifacts;
+src = lib.cleanSourceWith {
+  src = craneLib.path ./.; # the original src
+  filter = srcFilter; # the filter we defined above
 };
 ```
 
-It already contains the necessary dependencies. In particular, `crane` is a Rust build tool for Nix, and `fenix` is doing the job that `rustup` usually does--allows to specify the Rust versions, toolchain, etc, to use for building. 
+And add our extra binaries as build inputs so that they are available for our cargo build command:
 
 ```nix
-outputs = { self, nixpkgs, crane, fenix, flake-utils, advisory-db, ... }:
-  flake-utils.lib.eachDefaultSystem (system:
-    let
-      pkgs = nixpkgs.legacyPackages.${system};
-      # ...blah blah more stuff...
-    in
-    {
-      foo = bar
-      # ...blah blah more stuff...
-    }
+nativeBuildInputs = with pkgs; [
+  cargo-leptos
+  tailwindcss
+  binaryen
+  makeWrapper
+];
 ```
 
-Outputs is basically a function that has each of the named inputs as parameters. Our "return" value is to call `flake-utils.lib.eachDefaultSystem (system: ...)` to create a definition for each type of system. Finally the `let ... in ...` blocks defines a bunch of variables that can then be used in the resulting object.
+Now we finally come to the most "interesting" and relevant part. We can't just let Crane run the usual cargo build command, we want to run the leptos build, and then we want to collect all the outputs.
+
+```nix
+buildPhaseCargoCommand = "cargo leptos build --release -vv";
+installPhaseCommand = ''
+  mkdir -p $out/bin
+  cp target/release/${name} $out/bin/
+  cp -r target/site $out/bin/
+  wrapProgram $out/bin/${name} \
+    --set LEPTOS_SITE_ROOT $out/bin/site
+'';
+```
+
+Finally you can also add the new dependencies for the dev shell, so that we can use `nix develop`:
+
+```nix
+# Extra inputs can be added here; cargo and rustc are provided by default.
+packages = with pkgs; [
+  cargo-leptos
+  binaryen
+  tailwindcss
+  just
+  cargo-watch
+  treefmt
+  nixpkgs-fmt
+  rustfmt
+];
+```
+
+### Step 4. Build!
+
+If you've done everything right, then you should now be able to run `nix build` and wait a few minutes (it takes a while the first time) and if everything worked out you should end up with some output in `./result/`. You can try running your project at `./result/bin/my-crate`!
+
+```nix
+❯ ./result/bin/ck-dot-dev
+listening on http://127.0.0.1:3000
+```
+
+And if you visit that link in your favourite browser then you should see your leptos app. You can also do `nix develep -c $SHELL` and then run commands like `just watch` to use watch mode! Hooray, we did it!
+
+For reference here is my working [flake.nix](https://github.com/kahnclusions/ck-dot-dev/blob/main/flake.nix).

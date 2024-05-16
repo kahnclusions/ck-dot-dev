@@ -10,7 +10,7 @@
     };
 
     fenix = {
-      url = "github:nix-community/fenix/monthly";
+      url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.rust-analyzer-src.follows = "";
     };
@@ -32,12 +32,12 @@
 
         name = "ck-dot-dev";
 
-        rustNightly = fenix.packages.${system}.fromToolchainFile {
+        rustToolchain = fenix.packages.${system}.fromToolchainFile {
           file = ./rust-toolchain.toml;
-          sha256 = "sha256-bMKEd1LmaGfG8ntGJoqdrDFiH5XXBYoPDCaY82g9roY=";
+          sha256 = "sha256-3fmbQiyGG/DHpEOPwAnCZskyE3MzPUDNCbUnmWZ2h08=";
         };
 
-        craneLib = crane.lib.${system}.overrideToolchain rustNightly;
+        craneLib = crane.lib.${system}.overrideToolchain rustToolchain;
         src = craneLib.cleanCargoSource (craneLib.path ./.);
 
         # Common arguments can be set here to avoid repeating them later
@@ -49,14 +49,10 @@
             cargo-leptos
             binaryen
             tailwindcss
-            # Add additional build inputs here
           ] ++ lib.optionals pkgs.stdenv.isDarwin [
             # Additional darwin specific inputs can be set here
             pkgs.libiconv
           ];
-
-          # Additional environment variables can be set directly
-          # MY_CUSTOM_VAR = "some value";
         };
 
         craneLibLLvmTools = craneLib.overrideToolchain
@@ -89,13 +85,14 @@
             filter = srcFilter;
           };
 
-          buildPhaseCargoCommand = "cargo leptos build --release -vv";
           nativeBuildInputs = with pkgs; [
             cargo-leptos
             tailwindcss
             binaryen
             makeWrapper
           ];
+
+          buildPhaseCargoCommand = "cargo leptos build --release -vv";
           installPhaseCommand = ''
             mkdir -p $out/bin
             cp target/release/${name} $out/bin/
