@@ -130,11 +130,15 @@ buildPhaseCargoCommand = "cargo leptos build --release -vv";
 installPhaseCommand = ''
   mkdir -p $out/bin
   cp target/release/${name} $out/bin/
+  cp target/release/hash.txt $out/bin/
   cp -r target/site $out/bin/
   wrapProgram $out/bin/${name} \
     --set LEPTOS_SITE_ROOT $out/bin/site
+    --set LEPTOS_HASH_FILES true
 '';
 ```
+
+The above script will copy a link to your program binary, the asset hashes file, and the site assets, to `./result/bin/`. It will then wrap the binary in a script that sets a couple environment variables. In particular, the `hash.txt` and variable `LEPTOS_HASH_FILES=true` are needed in order to add file hashes to your asset file names and have them loaded correctly by the browser. This way when you make changes to files you can ensure that browsers fetch the new versions.
 
 Finally you can also add the new dependencies for the dev shell, so that we can use `nix develop`:
 
