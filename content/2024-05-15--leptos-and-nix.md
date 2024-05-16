@@ -154,3 +154,5 @@ listening on http://127.0.0.1:3000
 And if you visit that link in your favourite browser then you should see your leptos app. You can also do `nix develep -c $SHELL` and then run commands like `just watch` to use watch mode! Hooray, we did it!
 
 For reference here is my working [flake.nix](https://github.com/kahnclusions/ck-dot-dev/blob/main/flake.nix).
+
+Next time, I'll show how to include this flake in your Nix system configuration to deploy and run it on a server.
