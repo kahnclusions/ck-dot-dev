@@ -21,6 +21,8 @@ I'm going to assume that you already know how to set up a Leptos app, or at leas
 
 Even if you don't plan on deploying to your local machine, or developing with Nix on your local machine, I really do recommend you set it up anyway because you'll have a much tighter feedback loop doing all of this locally. On MacOS this is now as simple as running a simple command.
 
+Again, I'm going to assume that you're here because you already have an interest in Nix and have already gotten as far as running it somewhere and even configuring a server with nginx where you could host your Leptos app.
+
 If you've just installed Nix and haven't used flakes before, you can make life easier by adding this config:
 
 ```fish
