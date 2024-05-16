@@ -177,5 +177,18 @@
             rustfmt
           ];
         };
+
+        nixosModules.default = { config, pkgs, lib, ... }: {
+            options = {
+              services.ck-dot-dev.enable = lib.mkEnableOption "ck-dot-dev";
+            };
+
+            config = lib.mkIf config.services.ck-dot-dev.enable {
+              systemd.services.ck-dot-dev = {
+                serviceConfig.ExecStart = "${self.packages.${pkgs.system}.default}/bin/ck-dot-dev";
+              };
+            };
+          };
+        };
       });
 }
