@@ -4,6 +4,7 @@ use crate::ui::Stack;
 use gray_matter::engine::YAML;
 use gray_matter::Matter;
 use leptos::*;
+use leptos_meta::Script;
 use leptos_router::use_params;
 use leptos_router::*;
 use serde::Deserialize;
@@ -62,6 +63,7 @@ pub fn ArticlePage() -> impl IntoView {
 
     view! {
         <div class="flex flex-col gap-6 mx-3 mt-8">
+            <Script src="/js/prism.js" />
             <Stack>
                 <h2 class="text-5xl font-dos text-foam">{front_matter.title}</h2>
                 <h3 class="text-xl font-dos text-subtle">{front_matter.description}</h3>
