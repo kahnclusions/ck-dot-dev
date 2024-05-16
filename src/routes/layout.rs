@@ -13,14 +13,14 @@ pub fn Layout() -> impl IntoView {
                     <h1 class="text-4xl text-gold font-display">
                         <a href="/">"ck·dev"</a>
                     </h1>
-                    <nav class=" font-dos text-2xl flex flex-row gap-3">
+                    <nav class=" font-dos text-2xl flex flex-row gap-2">
                         <p>
                             <MenuItem label="blog".into() href="/articles".into()>
                                 <TextIcon />
                             </MenuItem>
                         </p>
                         <p>
-                            <MenuItem label="portfolio".into() href="/portfolio".into()>
+                            <MenuItem label="work".into() href="/portfolio".into()>
                                 <CopyDocument  />
                             </MenuItem>
                         </p>
