@@ -122,7 +122,7 @@ pub fn MenuItem(
 ) -> impl IntoView {
     let class = format!(
         "{} {}",
-        "h-[40px] flex flex-col items-center justify-center gap-0", class
+        "h-10 min-w-10 flex flex-col items-center justify-center gap-0", class
     );
     view! {
         <a class=class href=href>
