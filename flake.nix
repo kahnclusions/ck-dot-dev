@@ -67,13 +67,9 @@
         cargoArtifacts = craneLib.buildDepsOnly commonArgs;
 
         srcFilter = path: type:
-          (lib.hasSuffix "\.html" path) ||
-          (lib.hasSuffix "\.txt" path) ||
           (lib.hasSuffix "tailwind.config.js" path) ||
-          # Example of a folder for images, icons, etc
           (lib.hasInfix "/public/" path) ||
           (lib.hasInfix "/style/" path) ||
-          # Default filter from crane (allow .rs files)
           (craneLib.filterCargoSources path type)
         ;
 
@@ -97,6 +93,7 @@
           installPhaseCommand = ''
             mkdir -p $out/bin
             cp target/release/${name} $out/bin/
+            cp target/release/hash.txt $out/bin/
             cp -r target/site $out/bin/
             wrapProgram $out/bin/${name} \
               --set LEPTOS_SITE_ROOT $out/bin/site \
