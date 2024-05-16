@@ -68,6 +68,7 @@
 
         srcFilter = path: type:
           (lib.hasSuffix "\.html" path) ||
+          (lib.hasSuffix "\.txt" path) ||
           (lib.hasSuffix "tailwind.config.js" path) ||
           # Example of a folder for images, icons, etc
           (lib.hasInfix "/public/" path) ||
