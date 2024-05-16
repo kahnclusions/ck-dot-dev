@@ -5,7 +5,7 @@ description: Let's walk through how to use Nix to build Leptos fullstack apps wi
 published: true
 ---
 
-When I decided to setup this website, I decided to try building it in Leptos as a bit of an experiment. One the one hand I could use off the shelf static site generators, because this site is going to be mostly static content after all, but on the other hand I wanted to try something interesting. The Leptos web framework promises to bring the benefits of Rust onto the web, but without the bloated file sizes typically associated with WASM-based applications or other MY_FAVOURITE_LANG to JS frameworks.
+When I decided to setup this website, I decided to try building it in Leptos as a bit of an experiment. The Leptos web framework promises to bring the benefits of Rust onto the web, but without the bloated file sizes and slow startup times typically associated with WASM-based applications or `MY_LANG-to-JS` frameworks.
 
 So building a little website in Rust is all well and good, but how and where to publish it? Of course I had to make things a little bit difficult for myself. I already run a little Proxmox 7 homelab with a cluster of Nix VMs, so why not package the app for Nix and just deploy it to a Nix VM? Surely someone has done this before, so it should be easy, right? Right???
 
@@ -19,7 +19,7 @@ I'm going to assume that you already know how to set up a Leptos app, or at leas
 
 ### Step 2. Have Nix on your system.
 
-Even if you don't plan on deploying to your local machine, or developing with Nix on your local machine, I really do recommend you set it up anyway because you'll have a much tighter feedback loop doing all of this locally. On MacOS this is now as simple as running a simple command.
+Even if you don't plan on deploying to your local machine, or developing with Nix on your local machine, I really do recommend you set it up anyway because you'll have a much tighter feedback loop doing all of this locally. On MacOS you can set it up with a single command.
 
 Again, I'm going to assume that you're here because you already have an interest in Nix and have already gotten as far as running it somewhere and even configuring a server with nginx where you could host your Leptos app.
 
@@ -42,7 +42,7 @@ end
 
 We're going to copy/paste the "quick start" example from [here](https://crane.dev/examples/quick-start.html) into `YOUR_PROJECT/flake.nix`. If you're impatient like me and try running `nix build` now you'll find that it sorta works (maybe it builds) but doesn't actually do what we need. Don't worry! This file is actually not far off from what we need.
 
-If you're not sure what a flake file is, it's basically a definition for how to make a Nix module... it lists a bunch of inputs (dependencies), and then an output. Flakes are composable: you can use flakes as inputs to build other flakes. 
+If you're not sure what a flake file is, it's basically a definition for how to make a Nix expression (or package) with verion-pinned dependencies that can be imported and used in other packages... it lists a bunch of inputs (dependencies), and then an output. Flakes are composable: you can use flakes as inputs to build other flakes.
 
 In the flake file you'll see a line in the `outputs` block like this:
 
@@ -71,7 +71,15 @@ craneLibLLvmTools = craneLib.overrideToolchain
   (rustToolchain.withComponents [
 ```
 
-You can usually just get the right hash value to use from the error message the first time you try to build. Next we need to add `cargo-leptos` so that we can run our Leptos commands like `cargo leptos watch` or `cargo leptos build --release`. Just below the craneLib there's a section of `buildInputs`. We're going to add a few packages here:
+This tells crane to override the rust toolchain with the one we specify in `./rust-toolchain.toml`. You can usually just get the right hash value to use from the error message the first time you try to build. Because we need to build for WASM as well as the server, and because I use "nightly" features from Leptos, we should add the target in our toolchain file:
+
+```toml
+[toolchain]
+channel = "nightly"
+targets = ["wasm32-unknown-unknown"]
+```
+
+Next we need to add `cargo-leptos` so that we can run our Leptos commands like `cargo leptos watch` or `cargo leptos build --release`. Just below the craneLib there's a section of `buildInputs`. We're going to add a few packages here:
 
 ```nix
 buildInputs = with pkgs; [
