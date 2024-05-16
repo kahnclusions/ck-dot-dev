@@ -27,6 +27,7 @@ COPY --from=builder /work/content /app/content
 COPY --from=builder /work/Cargo.toml /app/
 
 EXPOSE $PORT
+ENV LEPTOS_SIDE_ADDR="0.0.0.0:3001"
 ENV LEPTOS_SITE_ROOT=./site
 ENV LEPTOS_HASH_FILES=true
 
