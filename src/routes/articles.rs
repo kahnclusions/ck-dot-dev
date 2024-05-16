@@ -5,7 +5,7 @@ use leptos::*;
 pub fn ArticlesPage() -> impl IntoView {
     // TODO make this page dynamic
     view! {
-        <div class="flex flex-col gap-6 mx-3 pb-3">
+        <div class="flex flex-col gap-6 mx-3">
             <Terminal title="cat /dev/urandom | echo".into()>
                 <ul class="list-disc ml-5">
                     <li>

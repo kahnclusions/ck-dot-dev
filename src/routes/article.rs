@@ -61,7 +61,7 @@ pub fn ArticlePage() -> impl IntoView {
     let html_content = markdown::to_html(result.content.as_str());
 
     view! {
-        <div class="flex flex-col gap-6 mx-3 pb-3 mt-10">
+        <div class="flex flex-col gap-6 mx-3 mt-8">
             <Stack>
                 <h2 class="text-5xl font-dos text-foam">{front_matter.title}</h2>
                 <h3 class="text-xl font-dos text-subtle">{front_matter.description}</h3>

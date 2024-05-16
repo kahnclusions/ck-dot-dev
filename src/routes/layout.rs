@@ -8,7 +8,7 @@ use crate::ui::MenuItem;
 pub fn Layout() -> impl IntoView {
     view! {
         <main class="bg-base text-text h-full w-full" dir="ltr">
-            <div class="max-w-[960px] mx-auto">
+            <div class="max-w-[960px] mx-auto flex flex-col gap-6">
                 <header class="p-3 box-content flex flex-row gap-3 items-center justify-between">
                     <h1 class="text-4xl text-gold font-display">
                         <a href="/">"ck·dev"</a>
@@ -32,7 +32,7 @@ pub fn Layout() -> impl IntoView {
                     </nav>
                 </header>
                 <Outlet />
-                <footer class="font-display p-3 text-center mt-3">"© 2024 ck - made in Canada + Taiwan"</footer>
+                <footer class="font-display px-3 pb-3 text-center">"© 2024 ck - made in Canada + Taiwan"</footer>
             </div>
         </main>
     }

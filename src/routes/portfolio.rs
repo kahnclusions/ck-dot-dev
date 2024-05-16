@@ -27,7 +27,7 @@ pub fn PortfolioEntry(
 #[component]
 pub fn PortfolioPage() -> impl IntoView {
     view! {
-        <div class="flex flex-col gap-6 mx-3 pb-3">
+        <div class="flex flex-col gap-6 mx-3">
             <Terminal title="portfolio".into()>
                 <Stack>
                     <p>"I have experience scaling up new web apps from scratch to millions of users in production, I've deployed and maintained critical production systems, and I've lead dev teams and mentored engineers. I specialize in full stack development with React, Next.js, and Rust. I also have experience in Proxmox and managing a cluster of VMs using NixOS."</p>
