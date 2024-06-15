@@ -12,7 +12,7 @@ pub fn HomePage() -> impl IntoView {
             <Terminal title="whoami".into() class="mx-3".into()>
                 <div class="flex flex-col sm:flex-row gap-3">
                 <Stack>
-                    <p>"My name is Chris. I'm a software developer and tech lead from Canada who's washed ashore in Taipei, Taiwan."</p>
+                    <p>"My name is Chris. I'm a software developer and tech lead from Canada based in London and Taipei."</p>
                 </Stack>
                 </div>
             </Terminal>
