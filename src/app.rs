@@ -30,7 +30,6 @@ pub fn App() -> impl IntoView {
             <Routes>
                 <Route path="" view=crate::routes::layout::Layout>
                     <Route path="" view=crate::routes::home::HomePage />
-                    <Route path="/portfolio" view=crate::routes::portfolio::PortfolioPage />
                     <Route path="/contact" view=crate::routes::contact::ContactPage />
                     <Route path="/articles" view=crate::routes::articles::ArticlesPage />
                     <Route path="/article/:slug" view=crate::routes::article::ArticlePage />

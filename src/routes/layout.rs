@@ -20,11 +20,6 @@ pub fn Layout() -> impl IntoView {
                             </MenuItem>
                         </p>
                         <p>
-                            <MenuItem label="work".into() href="/portfolio".into()>
-                                <CopyDocument  />
-                            </MenuItem>
-                        </p>
-                        <p>
                             <MenuItem label="contact".into() href="/contact".into()>
                                 <AddPerson />
                             </MenuItem>

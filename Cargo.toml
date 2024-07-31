@@ -27,6 +27,7 @@ leptos-use = { version = "0.10.9" }
 web-sys = "0.3.69"
 markdown = "1.0.0-alpha.17"
 gray_matter = "0.2.6"
+tailwind_fuse = { version = "0.3.1", features = ["variant"] }
 
 [features]
 hydrate = ["leptos/hydrate", "leptos_meta/hydrate", "leptos_router/hydrate"]
