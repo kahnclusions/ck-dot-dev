@@ -46,9 +46,9 @@
         };
 
         # read leptos options from `Cargo.toml`
-        leptos-options = builtins.elemAt (builtins.fromTOML (
+        leptos-options = (builtins.fromTOML (
           builtins.readFile ./Cargo.toml
-        )).workspace.metadata.leptos 0;
+        )).package.metadata.leptos;
         
         # configure crane to use our toolchain
         craneLib = (crane.mkLib pkgs).overrideToolchain toolchain;
@@ -58,7 +58,7 @@
           inherit src;
 
           # use the name defined in the `Cargo.toml` leptos options
-          pname = leptos-options.bin-package;
+          pname = leptos-options.output-name;
           version = "0.1.0";
 
           doCheck = false;
@@ -96,7 +96,7 @@
 
           buildPhaseCargoCommand = ''
             cargo build \
-              --package=${leptos-options.lib-package} \
+              --package=${leptos-options.output-name} \
               --lib \
               --target-dir=/build/source/target/front \
               --target=wasm32-unknown-unknown \
@@ -115,7 +115,7 @@
 
           buildPhaseCargoCommand = ''
             cargo build \
-              --package=${leptos-options.bin-package} \
+              --package=${leptos-options.output-name} \
               --no-default-features \
               --release
           '';
