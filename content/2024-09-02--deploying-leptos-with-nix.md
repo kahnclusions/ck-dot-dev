@@ -13,9 +13,7 @@ Once you've got your Leptos app compiling and running as a Nix flake, the next t
 {
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-23.11";
-    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
-    sops-nix.url = "github:Mic92/sops-nix";
-    nixos-hardware.url = "github:nixos/nixos-hardware";
+    # ... your other flake inputs here ...
     myapp.url = "github:myorg/myapp"; # <-- like this one if your repo is public
     myapp.url = "git+ssh://git@github.com/myorg/myapp.git"; # <-- or like this if your repo is private, but you need to make sure you have an authorized SSH key when building.
   };
@@ -32,6 +30,7 @@ Once you've got your Leptos app compiling and running as a Nix flake, the next t
           ./machines/myserver.nix
         ];
       }; 
+      # ... your other machine configs ... 
     };
   };
 }
