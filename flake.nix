@@ -139,7 +139,7 @@
             cp target/release/ck-dot-dev $out/bin/
             cp target/release/hash.txt $out/bin/
             cp -r target/site $out/bin/
-            wrapProgram $out/bin/${name} \
+            wrapProgram $out/bin/${leptos-options.output-name} \
               --set LEPTOS_SITE_ROOT $out/bin/site \
               --set LEPTOS_HASH_FILES true
           '';
