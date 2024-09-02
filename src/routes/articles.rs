@@ -9,7 +9,11 @@ pub fn ArticlesPage() -> impl IntoView {
                 <Terminal title="cat /dev/urandom | echo".into()>
                     <ul class="list-disc ml-5">
                         <li>
-                            <Link href="/article/2024-05-15--leptos-and-nix".into()>Building Leptos apps with Nix, Fenix, and Crane</Link>
+                            <Link href="/article/2024-09-02--deploying-leptos-with-nix".into()>Deploy your Rust app to Nix</Link>
+                            <p>Published on 2 September 2024</p>
+                        </li>
+                        <li>
+                            <Link href="/article/2024-05-15--leptos-and-nix".into()>Building Leptos apps with Nix</Link>
                             <p>Published on 16 May 2024</p>
                         </li>
                         <li>
