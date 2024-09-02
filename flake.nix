@@ -139,6 +139,9 @@
             cp target/release/ck-dot-dev $out/bin/
             cp target/release/hash.txt $out/bin/
             cp -r target/site $out/bin/
+            wrapProgram $out/bin/${name} \
+              --set LEPTOS_SITE_ROOT $out/bin/site \
+              --set LEPTOS_HASH_FILES true
           '';
 
           cargoArtifacts = ck-dot-dev-server-deps;
