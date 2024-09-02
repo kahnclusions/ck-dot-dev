@@ -193,7 +193,7 @@
         };
 
         packages = {
-          default = ck-dot-dev;
+          default = ck-dot-dev-server;
         };
         
         devShells.default = pkgs.mkShell {
