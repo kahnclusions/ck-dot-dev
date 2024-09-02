@@ -67,6 +67,7 @@
             pkgs.binaryen # provides wasm-opt
             pkgs.cargo-leptos
             pkgs.tailwindcss
+            pkgs.makeWrapper
           ] ++ pkgs.lib.optionals (system == "x86_64-linux") [
             pkgs.nasm # wasm compiler only for x86_64-linux
           ] ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [
