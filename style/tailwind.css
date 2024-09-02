@@ -233,73 +233,10 @@ html, body {
     src: url("/fonts/Anonymous_Pro/AnonymousPro-BoldItalic.ttf") format('truetype');
   }
 
-    @font-face {
-        font-family: "Volume Tc";
-        src: url("/fonts/Volume/Volume-TC-Italic.woff")
-            format("woff");
-        font-weight: 400;
-        font-style: italic;
-        font-display: swap;
-    }
-    @font-face {
-        font-family: "Volume Tc";
-        src: url("/fonts/Volume/Volume-TC-Regular.woff")
-            format("woff");
-        font-weight: 400;
-        font-style: normal;
-        font-display: swap;
-    }
-    @font-face {
-        font-family: "Volume Tc Sans";
-        src: url("/fonts/Volume/Volume-TC-Sans.woff") format("woff");
-        font-weight: 400;
-        font-style: normal;
-        font-display: swap;
-    }
-    @font-face {
-        font-family: "Volume Tc Rustic";
-        src: url("/fonts/Volume/Volume-TC-Rustic.woff")
-            format("woff");
-        font-weight: 400;
-        font-style: normal;
-        font-display: swap;
-    }
-    @font-face {
-        font-family: "Volume Tc Rustic Sans";
-        src: url("/fonts/Volume/Volume-TC-Sans-Rustic.woff")
-            format("woff");
-        font-weight: 400;
-        font-style: normal;
-        font-display: swap;
-    }
-    @font-face {
-        font-family: "Volume Tc Rustic Sans";
-        src: url("/fonts/Volume/Volume-TC-Sans-Rustic-Solid-Light.woff")
-            format("woff");
-        font-weight: 300;
-        font-style: normal;
-        font-display: swap;
-    }
-    @font-face {
-        font-family: "Volume Tc Script";
-        src: url("/fonts/Volume/Volume-TC-Script-Regular.woff")
-            format("woff");
-        font-weight: 400;
-        font-style: normal;
-        font-display: swap;
-    }
-    @font-face {
-        font-family: "Volume Tc Script";
-        src: url("/fonts/Volume/Volume-TC-Script-Regular-Italic.woff")
-            format("woff");
-        font-weight: 300;
-        font-style: normal;
-        font-display: swap;
-    }
 
   .article p {
     color: hsl(var(--color-text));
-    font-family: "Volume Tc", serif;
+    font-family: Georgia, Cambria, serif;
     font-size: 1.25rem;
     line-height: 1.75rem;
     margin: 16px 0;

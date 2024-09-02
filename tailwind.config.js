@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     fontFamily: {
       mono: ["AnonymousPro"],
-      serif: ["Volume Tc"],
+      serif: ["Mackinac"],
       display: ["Silkscreen"],
       dos: ["PerfectDOS"],
       ospx: ["OpenSansPX"],

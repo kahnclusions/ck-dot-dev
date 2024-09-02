@@ -1,13 +1,11 @@
 ---
-title: Building Leptos apps with Nix, Fenix, and Crane
+title: Building Leptos apps with Nix
 date: 2024-05-16
 description: Let's walk through how to use Nix to build Leptos fullstack apps with nightly Rust, taking care of the server program, client WASM, and assets.
 published: true
 ---
 
-When I decided to setup this website, I decided to try building it in Leptos as a bit of an experiment. The Leptos web framework promises to bring the benefits of Rust onto the web, but without the bloated file sizes and slow startup times typically associated with WASM-based applications or `MY_LANG-to-JS` frameworks.
-
-So building a little website in Rust is all well and good, but how and where to publish it? Of course I had to make things a little bit difficult for myself. I already run a little Proxmox 7 homelab with a cluster of Nix VMs, so why not package the app for Nix and just deploy it to a Nix VM? Surely someone has done this before, so it should be easy, right? Right???
+The Leptos web framework promises to bring the benefits of Rust onto the web, while also solving WASM's reputation for huge file sizes and slow startup times, so I decided to give it a try when building my personal website. Of course I had to make things a little bit difficult for myself. I already run a little Proxmox 7 homelab with a cluster of Nix VMs, so why not package the app for Nix and just deploy it to a Nix VM? Surely someone has done this before, so it should be easy, right? Right???
 
 Famous last words.
 
@@ -38,7 +36,7 @@ function develop --wraps='nix develop'
 end
 ```
 
-### Step 3. Draw the rest of the f*cking owl. Aka, add a `flake.nix` file.
+### Step 3. Sprinkle in some `flake.nix`.
 
 We're going to copy/paste the "quick start" example from [here](https://crane.dev/examples/quick-start.html) into `YOUR_PROJECT/flake.nix`. If you're impatient like me and try running `nix build` now you'll find that it sorta works (maybe it builds) but doesn't actually do what we need. Don't worry! This file is actually not far off from what we need.
 
