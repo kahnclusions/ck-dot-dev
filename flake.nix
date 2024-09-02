@@ -136,7 +136,7 @@
 
           installPhaseCommand = ''
             mkdir -p $out/bin
-            cp target/release/ck-dot-dev-server $out/bin/
+            cp target/release/ck-dot-dev $out/bin/
             cp target/release/hash.txt $out/bin/
             cp -r target/site $out/bin/
           '';
