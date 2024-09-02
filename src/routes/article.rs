@@ -41,7 +41,8 @@ pub fn ArticlePage() -> impl IntoView {
 
     let file_path = format!(
         "{}/content/{}.md",
-        std::env::current_dir().unwrap().display(),
+        std::env::var("CONTENT_PATH")
+            .unwrap_or(std::env::current_dir().unwrap().display().to_string()),
         slug()
     );
 
