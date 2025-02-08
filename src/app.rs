@@ -14,7 +14,7 @@ pub fn App() -> impl IntoView {
         <Stylesheet id="leptos" href="/pkg/ck-dot-dev.css"/>
 
         // sets the document title
-        <Title text="<ck.dev />"/>
+        <Title text="<0x75.net />"/>
 
         <Body class="bg-base text-text" />
 

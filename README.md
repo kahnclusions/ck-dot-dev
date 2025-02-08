@@ -1,6 +1,6 @@
 # ck-dot-dev
 
-This repository hosts my website available at [ck.dev](https://ck.dev).
+This repository hosts my website available at [0x75.net](https://0x75.net).
 
 The source code is open source as an example for how you could write Leptos apps and build them with Nix.
 

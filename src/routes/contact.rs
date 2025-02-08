@@ -9,7 +9,7 @@ pub fn ContactPage() -> impl IntoView {
                 <Stack>
                     <p>"With experience as a tech lead, and in front-end and full-stack software development delivering projects from zero to production, write to me and let me know how I can help you get your ideas to market robustly and securely."</p>
                     <p>"I work on a project basis, or on an ongoing basis with daily, weekly, or monthly rates tailored to your needs."</p>
-                    <p>"mailto: "<Link href="mailto:hello@ck.dev".into()>"hello@ck.dev"</Link></p>
+                    <p>"mailto: "<Link href="mailto:hello@0x75.net".into()>"hello@0x75.net"</Link></p>
                 </Stack>
             </Terminal>
         </div>

@@ -11,7 +11,7 @@ pub fn Layout() -> impl IntoView {
             <div class="max-w-[960px] mx-auto flex flex-col gap-6">
                 <header class="p-3 box-content flex flex-row gap-3 items-center justify-between">
                     <h1 class="text-4xl text-gold font-display">
-                        <a href="/">"ck·dev"</a>
+                        <a href="/">"0x75"</a>
                     </h1>
                     <nav class=" font-dos text-2xl flex flex-row gap-2">
                         <p>
@@ -27,7 +27,7 @@ pub fn Layout() -> impl IntoView {
                     </nav>
                 </header>
                 <Outlet />
-                <footer class="font-display px-3 pb-3 text-center">"© 2024 ck - made in Canada + Taiwan"</footer>
+                <footer class="font-display px-3 pb-3 text-center">"© 2024 ck"</footer>
             </div>
         </main>
     }
